@@ -1,7 +1,7 @@
 def estado_atual(state):
     numK = int(state[0])
-    moments = []
-    parking = []
+    moments = [] #momentos em que os carros entram e saem
+    parking = [] #ordena os carros que estao no estacionamento
     time = int(state[len(state)-1])
     for i in range(1, len(state)-1):
         moments.append(state[i])
@@ -9,20 +9,20 @@ def estado_atual(state):
         parking.append(0)
 
     for i in range(1, time+1):
-        for j in range(len(parking)-1, 0, -1):
+        for j in range(len(parking)-1, 0, -1): #ordena os carros no estacionamento
             parking[j] = parking[j-1]
             parking[j-1] = 0
         
         for j in range(1, len(moments)+1):
-            if (int(moments[j-1]) == int(i)):
+            if (int(moments[j-1]) == int(i)): #Adiciona o carro no estacionamento se ele entrou no momento i
                 parking[0] = j
-    print(parking)
+    print("Output: " + str(parking))
         
-inpu = input("Input: ")
-inpu2 = inpu.replace("estado_atual(", "")
-inpu3 = inpu2.replace(")", "")
-inpu4 = inpu3.replace("[", "")
-inpu5 = inpu4.replace("]", "")
-state = inpu5.split(",")
+a = input("Input: ")
+a = a.replace("estado_atual(", "")
+a = a.replace(")", "")
+a = a.replace("[", "")
+a = a.replace("]", "")
+state = a.split(",")
 
 estado_atual(state)

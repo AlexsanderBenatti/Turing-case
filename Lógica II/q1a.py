@@ -1,20 +1,20 @@
 def conta_economia(emails):
-        contador = 0
+        counter = 0
         for i in range(1,len(emails)):
             for j in range(len(emails[i])):
-                if (emails[i][j] != "@"): #para nao contabilizar o @usp.br
+                if (emails[i][j] != "@"): #contabilizar ate o @
                     if (emails[i][j] == emails[i-1][j]):
-                        contador += 1
+                        counter += 1
                     else: #para nao contabilizar o resto se ja tiver encontrado uma diferença
                         break
                 else:
                     break
-        print("contador: " + str(contador))
+        print("output: " + str(counter))
 
-inpu = input("Input: ")
-inpu2 = inpu.replace("conta_economia([", "")
-inpu3 = inpu2.replace("])", "")
-inpu4 = inpu3.replace('"', "")
-emails = list(inpu4.split(",")) 
+a = input("Input: ")
+a = a.replace("conta_economia([", "")
+a = a.replace("])", "")
+a = a.replace('"', "")
+emails = list(a.split(",")) 
 
 conta_economia(emails)
