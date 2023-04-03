@@ -1,24 +1,40 @@
-def corrige_emails(emails):
-    backup = emails.copy()
-    domain = "usp.br"
-    for i in range(len(emails)):
-        emails[i] = list(emails[i]) #transformar em lista para poder alterar os caracteres
-        for j in range(len(emails[i])):
-            if (j <= int(len(emails[i])/2)-1): #precisa do -1 pois j começa do 0
-                emails[i][j] = backup[i][int(len(emails[i])/2)-j-1] #usa o backup para não alterar o email original
-            elif (j >= int(len(emails[i])/2)):
-                emails[i][j] = backup[i][int(len(emails[i])/2)-j-1]
-        
-        emails[i] = "".join(emails[i])
-        if domain not in emails[i]: #verifica se o dominio esta correto
-            emails[i] = "ERRO"
+def estacionamento_ok(cars):
+    numK = int(cars[0])
+    instant = [] #carros que entram e saem no instante i
+    parking = [] #ordena os carros que estao no estacionamento
+    count = 0 #quantidade de carros no estacionamento
+    sim = "sim"
+    nao = "nao"
+    for i in range(1, len(cars)):
+        instant.append(cars[i])
 
-    print("Output: " + str(emails))
+    for i in range(len(instant)):
+        if (int(instant[i]) > 0):
+            if (count <= numK): #verifica se o estacionamento esta cheio
+                count += 1
+                parking.append(instant[i]) #"adiciona" o carro no estacionamento
+            else:
+                return nao
+        elif (int(instant[i]) < 0):
+            if (abs(int(instant[i])) == int(parking[len(parking)-1])): #verifica se o carro que esta saindo eh o mesmo que entrou por ultimo
+                count -= 1
+                parking.pop(len(parking)-1)
+            else:
+                if (count == 1): #verifica se o carro que saiu era o unico no estacionamento
+                    count -= 1
+                    parking.pop(len(parking)-1)
+                else:
+                    return nao
+    if (count != 0): #verifica se o estacionamento esta vazio no final
+        return nao
 
-a = input("Input: ")
-a = a.replace("corrige_emails([", "")
-a = a.replace("])", "")
-a = a.replace('"', "")
-emails = list(a.split(",")) 
+    return sim
 
-corrige_emails(emails)
+a = input()
+a = a.replace("estacionamento_ok(", "")
+a = a.replace(")", "")
+a = a.replace("[", "")
+a = a.replace("]", "")
+cars = a.split(",")
+
+print(estacionamento_ok(cars))

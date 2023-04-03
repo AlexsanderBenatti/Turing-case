@@ -16,13 +16,13 @@ def estado_atual(state):
         for j in range(1, len(moments)+1):
             if (int(moments[j-1]) == int(i)): #Adiciona o carro no estacionamento se ele entrou no momento i
                 parking[0] = j
-    print("Output: " + str(parking))
+    return parking
         
-a = input("Input: ")
+a = input()
 a = a.replace("estado_atual(", "")
 a = a.replace(")", "")
 a = a.replace("[", "")
 a = a.replace("]", "")
 state = a.split(",")
 
-estado_atual(state)
+print(estado_atual(state))
