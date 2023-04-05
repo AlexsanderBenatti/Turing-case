@@ -21,4 +21,4 @@ a = a.replace("])", "")
 a = a.replace('"', "")
 emails = list(a.split(",")) 
 
-print(corrige_emails(emails))
+corrige_emails(emails)

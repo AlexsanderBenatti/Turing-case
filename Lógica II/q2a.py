@@ -37,4 +37,4 @@ a = a.replace("[", "")
 a = a.replace("]", "")
 cars = a.split(",")
 
-print(estacionamento_ok(cars))
+estacionamento_ok(cars)

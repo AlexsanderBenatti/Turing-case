@@ -25,4 +25,4 @@ a = a.replace("[", "")
 a = a.replace("]", "")
 state = a.split(",")
 
-print(estado_atual(state))
+estado_atual(state)

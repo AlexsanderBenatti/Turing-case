@@ -11,10 +11,10 @@ def conta_economia(emails):
                 break
     return counter
 
-a = input("Input: ")
+a = input()
 a = a.replace("conta_economia([", "")
 a = a.replace("])", "")
 a = a.replace('"', "")
 emails = list(a.split(",")) 
 
-print(conta_economia(emails))
+conta_economia(emails)
